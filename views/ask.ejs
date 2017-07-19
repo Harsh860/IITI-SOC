@@ -1,0 +1,175 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+
+<script src="https://raw.github.com/leizongmin/js-xss/master/dist/xss.js"></script>
+<script>
+// apply function filterXSS in the same way
+var html = filterXSS('<script>alert("xss");</scr' + 'ipt>');
+alert(html);
+</script> 
+
+    <div class="navbar-fixed">
+        <nav class="red lighten-1 nav-extended  poiuy">
+            <div class="nav-wrapper ">
+                <a href="/" class="brand-logo left">Quora</a>
+                <ul id="nav-mobile" class="right ">
+                    <li><a href="/logout">logout</a></li>
+
+
+                    <li>
+                        <a href=/ op/op/op/<%=er._id %> ><%=err %>
+                            </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class=container>
+        <h1>
+            <%=ques %>
+        </h1>
+
+
+
+
+
+        <form method="POST">
+            <textarea name="question" id="myEditor"></textarea>
+            <button>Submit</button>
+        </form>
+
+        <!-- Include external JS libs. -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+        <!-- Include Editor JS files. -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/js/froala_editor.pkgd.min.js"></script>
+
+        <!-- Initialize the editor. -->
+        <script>
+            $(function() {
+                $('#myEditor').froalaEditor({
+                    toolbarInline: false,
+                    toolbarButtons: ['undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'outdent', 'insertImage', 'indent', 'clearFormatting', 'insertTable', 'html']
+                })
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <% for(var i=0;i<data.length;i++){ %>
+            <div class="card-panel grey lighten-5">
+
+                <i><b><%=data[i].answeredBy.fullname %></b></i>
+                <p> </p>
+                <p> </p>
+                <%-data[i].answer %>
+            </div>
+            <% } %>
+
+
+    </div>
+
+
+    <style>
+        /* Smartphones (portrait and landscape) ----------- */
+        
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            /* Styles */
+        }
+        /* Smartphones (landscape) ----------- */
+        
+        @media only screen and (min-width: 321px) {
+            /* Styles */
+        }
+        /* Smartphones (portrait) ----------- */
+        
+        @media only screen and (max-width: 320px) {
+            /* Styles */
+        }
+        /* iPads (portrait and landscape) ----------- */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            /* Styles */
+        }
+        /* iPads (landscape) ----------- */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* iPads (portrait) ----------- */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* Desktops and laptops ----------- */
+        
+        @media only screen and (min-width: 1224px) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* Large screens ----------- */
+        
+        @media only screen and (min-width: 1824px) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* iPhone 4 ----------- */
+        
+        @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (min-device-pixel-ratio: 1.5) {
+            /* Styles */
+        }
+        
+        #myEditor,
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+        
+        .gh {
+            height: 50px;
+            width: 50px;
+            max-height: 100%;
+            max-width: 100%;
+            border-radius: 100%;
+        }
+    </style>
+
+
+</body>
+
+</html>

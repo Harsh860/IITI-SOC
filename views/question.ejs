@@ -1,0 +1,178 @@
+<html>
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="/js/js3.js"></script>
+
+
+</head>
+
+<body>
+
+    <style>
+        /* Smartphones (portrait and landscape) ----------- */
+        
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            /* Styles */
+        }
+        /* Smartphones (landscape) ----------- */
+        
+        @media only screen and (min-width: 321px) {
+            /* Styles */
+        }
+        /* Smartphones (portrait) ----------- */
+        
+        @media only screen and (max-width: 320px) {
+            /* Styles */
+        }
+        /* iPads (portrait and landscape) ----------- */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            /* Styles */
+        }
+        /* iPads (landscape) ----------- */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* iPads (portrait) ----------- */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* Desktops and laptops ----------- */
+        
+        @media only screen and (min-width: 1224px) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* Large screens ----------- */
+        
+        @media only screen and (min-width: 1824px) {
+            /* Styles */
+            .container {
+                width: 70%;
+            }
+        }
+        /* iPhone 4 ----------- */
+        
+        @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (min-device-pixel-ratio: 1.5) {
+            /* Styles */
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <div class="navbar-fixed">
+
+        <nav class=" red lighten-1 nav-extended  poiuy" value=<%=er %>>
+            <div class="nav-wrapper ">
+
+                <a href="/" class="brand-logo">Quora</a>
+
+
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down ">
+
+
+                    <li><a href=/op/<%=err %> >read</a></li>
+
+                    <li><a class="a" href="#modal1"><i class="material-icons">add</i></a></li>
+
+
+                    <li>
+                        <a href=/op/op/op/<%=er %> >
+                                <%=err %>
+                            </a>
+                    </li>
+                    <li>
+                        <a href="/logout">logout</a>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+        </nav>
+
+    </div>
+    <div id="modal1" class="modal" style="margin-bottom: 10%;opacity:50%">
+
+
+        <div class="2 container card white darken-1" style="border-style:solid; border-color:grey;width:95%">
+            <form class="col s4" id="2" method="POST">
+                <div class="row ">
+                    <div class="input-field col s12"><input id="first_name" placeholder="Ask a question" type="text" name="question" class="validate"></div>
+                </div>
+                <div class="form-group"><button class=" btn ">submit</button></div>
+            </form>
+
+
+
+        </div>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+
+
+        <li><a href=/op/<%=err %> >read</a></li>
+
+        <li><a class="a" href="#modal1">ask</i></a></li>
+
+
+        <li>
+            <a href=/op/op/op/<%=er %> >
+                                <%=err %>
+                            </a>
+        </li>
+        <li>
+            <a href="/logout">logout</a>
+        </li>
+
+
+    </ul>
+    <div class="container  height" value=<%=err%> >
+
+
+        <% for(var i=0;i <err1.length;i++){ %>
+            <div class="card-panel grey lighten-5 col s12 m6" id="staggered-test">
+                <span class="black-text text-darken-2">
+                        <div class="row">
+                        <div class="col s12">
+                        <b><h2><a href= /<%=:encodeURIComponent(err1[i].question) %> ><%=err1[i].question %></a></h2></b>
+                      <p>  <small>asked by</small><small><a href=/op/op/op/<%=err1[i].postedBy._id %>><%=err1[i].postedBy.email %></a></small></p>
+                        </div>
+                       
+                        </div>
+                </span>
+            </div>
+            <% } %>
+
+
+    </div>
+    <div class="progress container">
+        <div class="indeterminate"></div>
+    </div>
+</body>
+
+</html>

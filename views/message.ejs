@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font: 13px Helvetica, Arial;
+        }
+        
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+<script src="https://raw.github.com/leizongmin/js-xss/master/dist/xss.js"></script>
+<script>
+// apply function filterXSS in the same way
+var html = filterXSS('<script>alert("xss");</scr' + 'ipt>');
+alert(html);
+</script> 
+    <p class='p' value=<%=id1 %>></p>
+    <p class='q' value=<%=id2 %>></p>
+
+    <ul id="messages"></ul>
+    <form>
+        <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function() {
+
+            var d = $('.q').attr('value');
+            var e = $('.p').attr('value')
+
+            var socket = io();
+
+            socket.emit('join',
+                e
+            );
+
+
+            $('form').submit(function() {
+                if ($('#m').val() == '') {
+                    console.log('1');
+                } else
+                    socket.emit('chat message', {
+                        val: $('#m').val(),
+                        id: d
+                    });
+                $('#m').val('');
+                return false;
+
+            });
+            socket.on('chat message', function(message) {
+                console.log(message);
+                $('#messages').append($('<li>').text(message.message));
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
