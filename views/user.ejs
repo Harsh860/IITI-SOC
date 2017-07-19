@@ -126,25 +126,18 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col s3">
-                                        <% if(user.img!=null){ %>
-                                            <img class="gh" src=/<%=user.img %> />
+                                        <% if(user.img==null){ %>
+                                            <img class="gh" src=/profile.png />
+                                            <% } %>
+                                                <% if(user.img!=null){ %>
+                                                    <img class="gh" src=/<%=user.img %> />
 
-                                            <% var ol=0 %>
+                                                    <% var ol=0 %>
 
-                                                <% } %>
-                                                    <%  if(ol===1 && z.toString()==t.toString()){ %>
-                                                        <a href="#moda1"> add Photo</a>
-                                                        <div id="moda1" class="modal">
-                                                            <form enctype="multipart/form-data" method="POST">
-                                                                <input id="upload-input" type="file" name="filename" />
-                                                                <input type="submit" />
-                                                            </form>
-                                                        </div>
                                                         <% } %>
-
-                                                            <%  if(ol===0 && z.toString()==t.toString()){ %>
-                                                                <a href="#moda"> change Photo</a>
-                                                                <div id="moda" class="modal">
+                                                            <%  if(ol===1 && z.toString()==t.toString()){ %>
+                                                                <a href="#moda1"> add</a>
+                                                                <div id="moda1" class="modal">
                                                                     <form enctype="multipart/form-data" method="POST">
                                                                         <input id="upload-input" type="file" name="filename" />
                                                                         <input type="submit" />
@@ -152,14 +145,26 @@
                                                                 </div>
                                                                 <% } %>
 
-                                                                    <style>
-                                                                        .s2,
-                                                                        .gh {
-                                                                            max-height: 100%;
-                                                                            max-width: 100%;
-                                                                            border-radius: 10%;
-                                                                        }
-                                                                    </style>
+                                                                    <%  if(ol===0 && z.toString()==t.toString()){ %>
+                                                                        <a href="#moda"> change</a>
+                                                                        <div id="moda" class="modal">
+                                                                            <form enctype="multipart/form-data" method="POST">
+                                                                                <input id="upload-input" type="file" name="filename" />
+                                                                                <input type="submit" />
+                                                                            </form>
+                                                                        </div>
+                                                                        <% } %>
+
+                                                                            <style>
+                                                                                .s2,
+                                                                                .gh {
+                                                                                    min-width: 90%;
+                                                                                    max-width: 90%;
+                                                                                    min-height: 90%;
+                                                                                    max-height: 91%;
+                                                                                    border-radius: 30%;
+                                                                                }
+                                                                            </style>
                                     </div>
                                     <div class="col s9">
 
@@ -181,6 +186,10 @@
                                         <p>
                                             following:
                                             <%=user.following.length %>
+                                        </p>
+                                        <p>
+                                            followers:
+                                            <%=user.followers.length %>
                                         </p>
                                         <p>
                                             <%  if(user.bio!=null){ %>
@@ -234,29 +243,31 @@
                                             </div>
                                             <% } %>
 
+                                                <% if(z.toString() != t.toString()){ %>
 
-                                                <% var op=0 %>
-                                                    <% if(user.followers.length==0){ %>
-                                                        <button value=<%=user._id %> class="btn red accent-1" id="follow" data-value=<%=idw %> name=<%=user.followers.length %>>follow <%=user.followers.length %></button>
-                                                        <% op=1 %>
-                                                            <% } %>
-                                                                <% if(op===0){ %>
-                                                                    <% for(var i=0;i<user.followers.length;i++){ %>
+                                                    <% var op=0 %>
+                                                        <% if(user.followers.length==0){ %>
+                                                            <button value=<%=user._id %> class="btn red accent-1" id="follow" data-value=<%=idw %> name=<%=user.followers.length %>>follow <%=user.followers.length %></button>
+                                                            <% op=1 %>
+                                                                <% } %>
+                                                                    <% if(op===0){ %>
+                                                                        <% for(var i=0;i<user.followers.length;i++){ %>
 
-                                                                        <% if(user.followers[i]==idw){ %>
+                                                                            <% if(user.followers[i]==idw){ %>
 
-                                                                            <button value=<%=user._id %> id="following" data-value=<%=idw %> name=<%=user.followers.length %> class="btn red accent-1">following <%=user.followers.length %></button>
-                                                                            <% op=2 %>
-                                                                                <% break; %>
-                                                                                    <% } %>
-
+                                                                                <button value=<%=user._id %> id="following" data-value=<%=idw %> name=<%=user.followers.length %> class="btn red accent-1">following <%=user.followers.length %></button>
+                                                                                <% op=2 %>
+                                                                                    <% break; %>
                                                                                         <% } %>
+
                                                                                             <% } %>
+                                                                                                <% } %>
 
 
-                                                                                                <% if(op===0 ){ %>
-                                                                                                    <button value=<%=user._id %> id="follow" data-value=<%=idw %> name=<%=user.followers.length %> class="btn red accent-1">follow <%=user.followers.length %></button>
-                                                                                                    <% } %>
+                                                                                                    <% if(op===0 ){ %>
+                                                                                                        <button value=<%=user._id %> id="follow" data-value=<%=idw %> name=<%=user.followers.length %> class="btn red accent-1">follow <%=user.followers.length %></button>
+                                                                                                        <% } %>
+                                                                                                            <% } %>
                                     </div>
                                 </div>
                                 <div>

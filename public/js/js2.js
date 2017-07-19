@@ -23,7 +23,12 @@ $(document).ready(function() {
         startingTop: '100%', // Starting top style attribute
         endingTop: '0%', // Ending top style attribute
     });
-
+    $('#modal1').modal({
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '100%', // Starting top style attribute
+        endingTop: '0%', // Ending top style attribute
+    });
     $('#follow').click(function() {
         var c = $(this).val();
         var d = $(this).attr("data-value")
@@ -76,8 +81,12 @@ $(document).ready(function() {
         $.ajax({
             url: '/delete/answer/' + ty,
             type: 'POST',
-            complete: function() {
-                console.log('delete');
+            success: function(data, textStatus) {
+                if (data.url) {
+                    // data.redirect contains the string URL to redirect to
+                    window.location.href = data.url;
+                }
+
             }
         })
     })

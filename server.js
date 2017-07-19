@@ -36,7 +36,7 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/quor');
+mongoose.connect('mongodb://localhost/quo');
 require('./config/passport');
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -472,7 +472,7 @@ app.post('/delete/answer/:id', function(req, res) {
     answer.find({ _id: req.params.id }).remove(function(err, data) {
 
     })
-    res.redirect('/op/op/op' + req.user._id);
+    res.send({ url: '/op/op/op/' + req.user._id });
 })
 app.post('/op/op/op/:id1/:id2', function(req, res) {
     if (req.user == null) {

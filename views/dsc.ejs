@@ -112,7 +112,7 @@
 
         </div>
     </div>
-
+    <li value=<%=ans.length %> class="li" ></li>
     <div class="container  height" value=<%=err%> >
 
 
@@ -129,7 +129,11 @@
                        
                         <div class="col s12">
 
-<div class="grey lighten-4"><% if(ans[j].answeredBy.img!=null){ %>
+<div class="grey lighten-4"><% if(ans[j].answeredBy.img==null){ %>
+
+<img class="gh" src="/img.png" />
+<% } %>
+<% if(ans[j].answeredBy.img!=null){ %>
                                             <img class="gh" src=/<%=ans[j].answeredBy.img %> />
 
                                             

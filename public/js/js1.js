@@ -10,125 +10,141 @@ $(document).ready(function() {
     $(".button-collapse").sideNav();
     var loading = $('.progress');
 
+    var sh = parseInt($('.li').val());
+    if (sh <= 10)
+        loading.hide();
+
+
     var i = 0;
     var p = 2;
     var stop = 0;
+    var stop1 = 1;
     console.log(p);
 
     var err = $('.height').attr('value');
     var er = $('.poiuy').attr('value');
 
     $(window).scroll(function() {
+        if (stop1 > 0) {
 
+            if ($(window).scrollTop() + window.innerHeight == $(document).height() && stop1 > 0) {
+                loading.show();
 
-        if ($(window).scrollTop() + window.innerHeight == $(document).height()) {
+                $.get(
+                    '/qw/qw/qw/' + p,
+                    function(ans) {
+                        var l = '';
+                        var l1 = '';
+                        var k1 = '';
+                        var f = '';
+                        var g = '';
+                        var h = '';
+                        var q1 = '';
+                        var w1 = '';
+                        var r1 = '';
+                        var t1 = '';
+                        var y1 = '';
+                        var u1 = '';
+                        stop1 = ans.length;
+                        if (ans.length == 0) {
 
-            $.get(
-                '/qw/qw/qw/' + p,
-                function(ans) {
-                    if (ans.length == 0) {
-                        loading.hide();
-                        console.log('hjjjjjjjjjjjjjj');
-                    } //else {
-                    //loading.show();
-
-                    //                    }
-                    for (var j = 0; j < ans.length; j++) {
-                        var l1 = '<b><h2><a href=/' + encodeURIComponent(ans[j].question) + '>' + ans[j].question + '</a></h2></b><div class="grey lighten-3">';
-                        var l = '<div class="card-panel grey lighten-5 col s12 m6" id="staggered-test">';
-                        //   $('.height').append('<div class="card-panel grey lighten-5 col s12 m6" id="staggered-test"><div class="grey lighten-3">')
-
-
-
-                        if (ans[j].answeredBy.img != null) {
-                            //   $('.height').append('<img class="gh" src=' + '/' + ans[j].answeredBy.img + " " + '/>')
-                            var k1 = '<img class="gh" src=' + '/' + ans[j].answeredBy.img + " " + '/>';
-
-
+                            loading.hide();
+                            console.log('hjjjjjjjjjjjjjj');
                         }
-                        var f = '<a href=/op/op/op/' + ans[j].answeredBy._id + '>' + ans[j].answeredBy.fullname + '</a>';
-                        //   $('.height').append('<a href=/op/op/op/' + ans[j].answeredBy._id + '>' + ans[j].answeredBy.fullname + '</a>')
-                        if (ans[j].answeredBy.bio != null) {
-                            //     $('.container').append(ans[j].answeredBy.bio)
-                            var h = ans[j].answeredBy.bio;
-                        }
-
-                        //       $('.height').append('<br><br>' + ans[j].answer + '</div></div>')
-                        //    $('.container').append(ans[j].answer)
-                        //  $('.container').append('</div>')
-                        //$('.container').append('</div>')
-                        var g = '<br><br>' + ans[j].answer + '</div><div>';
-                        var g1 = '</div></div>';
-
-                        var y = 0;
-                        //        console.log('j ' + j);
-                        for (var k = 0; k < ans[j].upvotedBy.length; k++) {
-
-                            console.log(er);
-                            console.log(ans[j].upvotedBy[k]);
-                            console.log(ans[j].upvotedBy[k] == er);
-                            if (ans[j].upvotedBy[k] == er) {
-
-                                y = 1;
-                                console.log('yloop' + 1);
-
-                                var q1 = '<div class = ' + ans[j]._id + '>';
-                                var w1 = '<button class="btn y" value=' + ans[j]._id + '     ' + 'data-value=' + ans[j].count + '>upvoted ' + ans[j].count + '</button>';
-
-                                var r1 = '<a href=/comment/' + ans[j]._id + '/' + err + 'class="cmm" data-value=' + ans[j]._id + '>comment</a></div>';
+                        for (var j = 0; j < ans.length; j++) {
+                            l1 = '<b><h2><a href=/' + encodeURIComponent(ans[j].question) + '>' + ans[j].question + '</a></h2></b><div class="grey lighten-3">';
+                            l = '<div class="card-panel grey lighten-5 col s12 m6" id="staggered-test">';
+                            //   $('.height').append('<div class="card-panel grey lighten-5 col s12 m6" id="staggered-test"><div class="grey lighten-3">')
 
 
 
-                                break;
+                            if (ans[j].answeredBy.img != null) {
+                                //   $('.height').append('<img class="gh" src=' + '/' + ans[j].answeredBy.img + " " + '/>')
+                                k1 = '<img class="gh" src=' + '/' + ans[j].answeredBy.img + " " + '/>';
+
 
                             }
+                            f = '<a href=/op/op/op/' + ans[j].answeredBy._id + '>' + ' ' + ans[j].answeredBy.fullname + '</a>';
+                            //   $('.height').append('<a href=/op/op/op/' + ans[j].answeredBy._id + '>' + ans[j].answeredBy.fullname + '</a>')
+                            if (ans[j].answeredBy.bio != null) {
+                                //     $('.container').append(ans[j].answeredBy.bio)
+                                h = ans[j].answeredBy.bio;
+                            }
+
+                            //       $('.height').append('<br><br>' + ans[j].answer + '</div></div>')
+                            //    $('.container').append(ans[j].answer)
+                            //  $('.container').append('</div>')
+                            //$('.container').append('</div>')
+                            g = '<br><br>' + ans[j].answer + '</div><div>';
+                            var g1 = '</div></div>';
+
+                            var y = 0;
+                            //        console.log('j ' + j);
+                            for (var k = 0; k < ans[j].upvotedBy.length; k++) {
+
+                                console.log(er);
+                                console.log(ans[j].upvotedBy[k]);
+                                console.log(ans[j].upvotedBy[k] == er);
+                                if (ans[j].upvotedBy[k] == er) {
+
+                                    y = 1;
+                                    console.log('yloop' + 1);
+
+                                    q1 = '<div class = ' + ans[j]._id + '>';
+                                    w1 = '<button class="btn y" value=' + ans[j]._id + '     ' + 'data-value=' + ans[j].count + '>upvoted ' + ans[j].count + '</button>';
+
+                                    r1 = '<a href=/comment/' + ans[j]._id + '/' + err + 'class="cmm" data-value=' + ans[j]._id + '>comment</a></div>';
 
 
+
+                                    break;
+
+                                }
+
+
+
+
+                            }
+                            console.log('y' + y);
+                            console.log('ans' + ans[j].upvotedBy.length);
+                            if (y === 0 || ans[j].upvotedBy.length == 0) {
+                                t1 = '<div class=' + ans[j]._id + '><div class="p"><button class="btn z"   value='
+
+                                y1 = ans[j]._id + ' ' + 'data-value=' + ans[j].count + '>upvote' + ' ' + ans[j].count + '</button>';
+
+
+                                u1 = '<a href=/comment/' + ans[j]._id + '/err' + 'class="cmm"' + 'data-value=' + ans[j]._id + '>comment</a></div></div>';
+
+
+
+
+
+                            }
+                            console.log('ybottom' + y);
+                            $('.height').append(l + l1 + k1 + f + h + g + q1 + w1 + r1 + t1 + y1 + u1 + g1);
+
+                            l = '';
+                            l1 = '';
+                            k1 = '';
+                            f = '';
+                            g = '';
+                            h = '';
+                            q1 = '';
+                            w1 = '';
+                            r1 = '';
+                            t1 = '';
+                            y1 = '';
+                            u1 = '';
+                            console.log(u1);
 
 
                         }
-                        console.log('y' + y);
-                        console.log('ans' + ans[j].upvotedBy.length);
-                        if (y === 0 || ans[j].upvotedBy.length == 0) {
-                            var t1 = '<div class=' + ans[j]._id + '><div class="p"><button class="btn z"   value='
-
-                            var y1 = ans[j]._id + ' ' + 'data-value=' + ans[j].count + '>upvote' + ' ' + ans[j].count + '</button>';
 
 
-                            var u1 = '<a href=/comment/' + ans[j]._id + '/err' + 'class="cmm"' + 'data-value=' + ans[j]._id + '>comment</a></div></div>';
+                    })
+                p = p + 1;
 
-
-
-
-
-                        }
-                        console.log('ybottom' + y);
-                        $('.height').append(l + l1 + k1 + f + h + g + q1 + w1 + r1 + t1 + y1 + u1 + g1);
-
-                        l = '';
-                        l1 = '';
-                        k1 = '';
-                        f = '';
-                        g = '';
-                        h = '';
-                        q1 = '';
-                        w1 = '';
-                        r1 = '';
-                        t1 = '';
-                        y1 = '';
-                        u1 = '';
-                        console.log(u1);
-
-
-                    }
-
-                    if (ans.length != 0) {
-                        console.log('uui');
-                        loading.hide();
-                    }
-                })
-            p = p + 1;
-
+            }
         }
     });
 
