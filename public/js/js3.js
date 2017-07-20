@@ -19,12 +19,14 @@ $(document).ready(function() {
 
     var p = 2;
     var stop1 = 1;
+    var check=0;
 
     $(window).scroll(function() {
-        if (stop1 > 0) {
+        if (stop1 > 0 && check==0) {
             loading.show();
 
             if ($(window).scrollTop() + window.innerHeight + 50 > $(document).height() && stop1 > 0) {
+                check=1;
                 $.get('/all/question/' + p, function(err1) {
                     stop1 = err1.length;
                     console.log(err1);
@@ -52,6 +54,7 @@ $(document).ready(function() {
 
                     p = p + 1;
                     loading.hide();
+                    check=0;
 
                 })
             }
