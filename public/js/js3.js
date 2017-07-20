@@ -24,7 +24,7 @@ $(document).ready(function() {
         if (stop1 > 0) {
             loading.show();
 
-            if ($(window).scrollTop() + window.innerHeight + 50 == $(document).height() && stop1 > 0) {
+            if ($(window).scrollTop() + window.innerHeight + 50 > $(document).height() && stop1 > 0) {
                 $.get('/all/question/' + p, function(err1) {
                     stop1 = err1.length;
                     console.log(err1);
