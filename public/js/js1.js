@@ -27,7 +27,7 @@ $(document).ready(function() {
     $(window).scroll(function() {
         if (stop1 > 0) {
 
-            if ($(window).scrollTop() + window.innerHeight + 50 == $(document).height() && stop1 > 0) {
+            if ($(window).scrollTop() + window.innerHeight + 50 > $(document).height() && stop1 > 0) {
                 loading.show();
 
                 $.get(
