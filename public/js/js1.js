@@ -20,16 +20,16 @@ $(document).ready(function() {
     var stop = 0;
     var stop1 = 1;
     console.log(p);
-
+var check=0;
     var err = $('.height').attr('value');
     var er = $('.poiuy').attr('value');
 
     $(window).scroll(function() {
-        if (stop1 > 0) {
+        if (stop1 > 0 && check==0) {
 
             if ($(window).scrollTop() + window.innerHeight + 50 > $(document).height() && stop1 > 0) {
                 loading.show();
-
+check=1;
                 $.get(
                     '/qw/qw/qw/' + p,
                     function(ans) {
@@ -143,6 +143,7 @@ $(document).ready(function() {
 
                     })
                 p = p + 1;
+                check=0;
 
             }
         }
