@@ -36,7 +36,7 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/quo');
+mongoose.connect('mongodb://localhost/quo',{ useMongoClient: true });
 require('./config/passport');
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
