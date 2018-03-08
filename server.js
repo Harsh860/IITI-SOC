@@ -116,8 +116,8 @@ app.post('/comment/:answer/:username', function(req, res) {
 
 app.get('/comment/:answer/:username', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
 
     console.log(req.user);
@@ -132,7 +132,7 @@ app.get('/comment/:answer/:username', function(req, res) {
 
 app.get('/signup/op/op', function(req, res, next) {
     if (req.user != null) {
-        res.redirect('/op/' + req.user.email);
+      return  res.redirect('/op/' + req.user.email);
     }
 
     var errors = req.flash('error');
@@ -150,27 +150,28 @@ app.get('/signup/op/op', function(req, res, next) {
 app.get('/logout', function(req, res) {
     req.logout();
     req.session.destroy((err) => {
-        res.redirect('/');
+      return  res.redirect('/');
     })
 
 });
 
 
-app.get('/', function(req, res, next) {
+app.get('/', function(req, res) {
+  console.log(req.user);
     if (req.user != null) {
-        res.redirect('/op/' + req.user.email);
+    return  res.redirect('/op/' + req.user.email);
     }
 
     var errors = req.flash('error');
     res.render('index', { messages: errors });
     // res.render('sttle');
-    next();
+  //  next();
 
 });
 app.post('/upvote/:id', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
     console.log(req.user._id);
     answer.findOneAndUpdate({ '_id': req.params.id }, { $push: { upvotedBy: req.user._id }, $inc: { count: 1 } }, function(err, data) {
@@ -184,8 +185,8 @@ app.post('/upvote/:id', function(req, res) {
 
 app.post('/downvote/:id', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
     answer.findOneAndUpdate({ '_id': req.params.id }, { $pull: { upvotedBy: req.user._id }, $inc: { count: -1 } }, function(err, data) {
 
@@ -197,9 +198,10 @@ app.post('/downvote/:id', function(req, res) {
 })
 
 app.post(['/op/:user', '/1/op/:pa', '/all/question/:pa', '/p/op/1/:user'], function(req, res) {
+
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
     var ques = new post({
 
@@ -227,7 +229,7 @@ app.post(['/op/:user', '/1/op/:pa', '/all/question/:pa', '/p/op/1/:user'], funct
 */
         // req.user.question = req.body.question;
         //console.log(req.user.id);
-    res.redirect('/all/question/1');
+  return  res.redirect('/all/question/1');
 
     // console.log(req.user);
     // console.log(Userexisting);
@@ -243,7 +245,7 @@ app.post('/', passport.authenticate('local.signin', {
     function(req, res) {
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
-        res.redirect('/op/' + req.user.email);
+      return   res.redirect('/op/' + req.user.email);
     });
 
 
@@ -258,7 +260,7 @@ app.post('/signup/op/op', validate, passport.authenticate('local.signup', {
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
 
-        res.redirect('/op/' + req.user.email);
+    return    res.redirect('/op/' + req.user.email);
 
     }
 );
@@ -271,9 +273,11 @@ app.post('/signup/op/op', validate, passport.authenticate('local.signup', {
     res.render('ask');
 })*/
 app.get('/op/:user', function(req, res) {
+
+    console.log(req.user);
     if (req.user == null) {
-        res.redirect('/');
-        return;
+    return    res.redirect('/');
+
     }
 
 
@@ -303,12 +307,12 @@ app.get('/op/:user', function(req, res) {
 
 app.get('/p/op/1/:user', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+        return res.redirect('/');
+
     }
     if (req.params.user != null) {
         if (req.params.user != req.user.email) {
-            res.redirect('/');
+          return  res.redirect('/');
         }
 
     }
@@ -338,12 +342,12 @@ app.get('/p/op/1/:user', function(req, res) {
 
 app.get('/1/op/:pa', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+    return    res.redirect('/');
+
     }
     if (req.params.user != null) {
         if (req.params.user != req.user.email) {
-            res.redirect('/');
+        return     res.redirect('/');
         }
 
     }
@@ -419,8 +423,8 @@ app.get('/all/question/:pa', function(req, res) {
 
 app.get('/op/op/op/:id', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
 
 
@@ -449,7 +453,7 @@ app.post('/op/op/op/:id', upload.single('filename'), function(req, res) {
     if (req.body.bio != null) {
         User.findOneAndUpdate({ '_id': req.params.id }, { 'bio': req.body.bio }, function(err, data) {
             if (!err) {
-                res.redirect('/op/op/op/' + req.params.id)
+              return  res.redirect('/op/op/op/' + req.params.id)
             }
         })
 
@@ -461,7 +465,7 @@ app.post('/op/op/op/:id', upload.single('filename'), function(req, res) {
 
         User.findOneAndUpdate({ '_id': req.params.id }, { 'img': req.file.filename }, function(err, data) {
             if (!err) {
-                res.redirect('/op/op/op/' + req.params.id)
+              return   res.redirect('/op/op/op/' + req.params.id)
             }
         })
 
@@ -518,15 +522,15 @@ app.get('/:question', function(req, res) {
     console.log(req.params.question);
     console.log(encodeURIComponent(req.params.question));
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
 
     answer.find({ 'question': decodeURIComponent(req.params.question) }, (err, data) => {
 
         if (data.question == 0) {
-            res.redirect('/');
-            return
+          return  res.redirect('/');
+
         }
 
 
@@ -536,8 +540,8 @@ app.get('/:question', function(req, res) {
 
 app.post('/:question', function(req, res) {
     if (req.user == null) {
-        res.redirect('/');
-        return;
+      return  res.redirect('/');
+
     }
     var c1 = encodeURIComponent(req.params.question);
     console.log(req.params.question);
@@ -548,7 +552,7 @@ app.post('/:question', function(req, res) {
     })
     ans.save(function(err) {
         if (!err) {
-            res.redirect('/' + c1);
+          return  res.redirect('/' + c1);
 
         }
     })
