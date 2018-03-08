@@ -2,7 +2,7 @@
 
 Question Answer Site where users can write,ask,comment,upvote ,delete questions and answers
 
-## Installation Process
+## Installation Process for Linux
 
 ### Install Node.js and NPM
 ```
