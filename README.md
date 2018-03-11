@@ -57,6 +57,11 @@ Output should be
    CGroup: /system.slice/mongodb.service
            └─4093 /usr/bin/mongod --quiet --config /etc/mongod.conf
 ``` 
+### Install Dependencies
+```
+sudo npm install
+```
+
 
 ### Run Server
 
